@@ -7,16 +7,25 @@
  *
  * @author ahmetkaska
  */
-public class Node <T>{
-    
+public class Node<T> {
+
     Node<T> next;
     Node<T> child;
     T data;
-    
-    public Node(T data){
+    int position;
+
+    public Node(T data) {
         this.next = null;
         this.child = null;
         this.data = data;
+
     }
-    
+
+    public Node(T data, int position) {
+        this.next = null;
+        this.child = null;
+        this.data = data;
+        this.position = position;
+    }
+
 }
