@@ -11,74 +11,102 @@ public class Test {
 
     public static void main(String[] args) {
 
-        MLinkedList<Integer> multiList = new MLinkedList<>();
-        multiList.AddLast(1, 1);
-        multiList.AddLast(2, 2);
-        multiList.AddLast(3, 3);
-        multiList.AddLast(4, 4);
-        multiList.AddLast(5, 5);
+        MLinkedList<Integer> multiList = new MLinkedList<>(); // Creating linked-list
+        // Adding parent nodes
+        multiList.AddParentNode(2, 1);
         multiList.printList();
-        System.out.println("--------------------------");
-        multiList.insertChild(1, 4);
-        multiList.insertChild(2, 3);
-        multiList.insertChild(2, 8);
-        multiList.insertChild(5, 0);
+        System.out.println("*************************************************************");
+        multiList.AddParentNode(2, 4);
         multiList.printList();
-        System.out.println("--------------------------");
-        //  multiList.removeChild(5,2);
+        System.out.println("*************************************************************");
+        multiList.AddParentNode(4, 2);
         multiList.printList();
-        System.out.println("--------------------------");
-        multiList.yaz(5, 2);
-        /*  multiList.AddLast(3, 3);
-        // multiList.AddLast(1, 1);
-        multiList.AddLast(4, 4);
-        // multiList.AddLast(2, 2);
-        // multiList.AddLast(5, 5);
-        //  multiList.AddLast(6, 6);
-        multiList.AddLast(2, 2);
-        multiList.AddLast(2, 3);
-        multiList.AddLast(2, 4);
+        System.out.println("*************************************************************");
+        multiList.AddParentNode(2, 3);
         multiList.printList();
-        System.out.println("--------------------------");
-        multiList.insertChild(2, 9);
+        System.out.println("*************************************************************");
+        multiList.AddParentNode(4, 5);
         multiList.printList();
-        System.out.println("--------------------------");
-        multiList.insertChild(2, 4);
-        multiList.insertChild(2, 7);
-        multiList.insertChild(2, 6);
-        multiList.insertChild(2, 1);
+        System.out.println("*************************************************************");
+        // Adding Child Nodes
+        multiList.insertChildNode(2, 2);
         multiList.printList();
-        System.out.println("--------------------------");
-        multiList.removeChild(1,2);
-                multiList.printList();
-         */
- /*   
-        System.out.println("--------------------------");
-        // multiList.print();
+        System.out.println("*************************************************************");
+         multiList.insertChildNode(5, 4);
         multiList.printList();
-
-        System.out.println("--------------------------");
-
-        //  multiList.insertChild(8, 2);
+        System.out.println("*************************************************************");
+         multiList.insertChildNode(1, 8);
         multiList.printList();
-        System.out.println("--------------------------");
-       // multiList.insertChild(3, 9);
+        System.out.println("*************************************************************");
+         multiList.insertChildNode(1, 8);
         multiList.printList();
-        System.out.println("--------------------------");
-        // multiList.insertChild(6, 9);
+        System.out.println("*************************************************************");
+         multiList.insertChildNode(2, 32);
         multiList.printList();
-        System.out.println("--------------------------");
-        //multiList.insertChild(6, 7);
+        System.out.println("*************************************************************");
+         multiList.insertChildNode(3, 2);
         multiList.printList();
-        System.out.println("--------------------------");
-
-        multiList.insertChild(1, 9);
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(3, 64);
         multiList.printList();
-         System.out.println("--------------------------");
-
-        multiList.insertChild(5, 2);
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(4, 16);
         multiList.printList();
-         */
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(2, 64);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(3, 32);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(1, 16);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(5, 16);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(3, 32);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(2, 64);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(4, 8);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(4, 4);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(4, 2);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(4, 2);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(2, 2);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(3, 32);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(3, 16);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(3, 8);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(3, 8);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(2, 4);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        multiList.insertChildNode(2, 8);
+        multiList.printList();
+        System.out.println("*************************************************************");
+        //multiList.insertChildNode(2, 16); Game over!
+       // multiList.printList();
+       // System.out.println("*************************************************************");
     }
 
 }

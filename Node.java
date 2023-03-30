@@ -28,4 +28,12 @@ public class Node<T> {
         this.position = position;
     }
 
+    public  void setData(T data) {
+        this.data = data;
+    }
+
+    public T getData() {
+        return data;
+    }
+    
 }

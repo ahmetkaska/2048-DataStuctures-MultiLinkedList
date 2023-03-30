@@ -10,71 +10,77 @@
 public class MLinkedList<T> {
 
     Node<T> head;
-    
+
     public MLinkedList() {
         if (head == null) {
             //System.out.println("List is empty!!");
         }
     }
 
-    public void AddLast(T data, int position) {
+    public void AddParentNode(T data, int position) {
         Node<T> newNode = new Node(data, position);
-        if (head == null) {
-            head = newNode;
+        Node<T> parent = head;
+        if (size2(parent) >= 5) {
+            System.out.println("Game Over!");
         } else {
-            Node<T> temp = head;
+            if (head == null) {
+                head = newNode;
+                System.out.println("Node added. Position of new node is " + newNode.position + ". Data of new node is " + newNode.data + ".");
 
-            while (temp.next != null) {
-                temp = temp.next;
+            } else {
+                Node<T> temp = head;
+
+                while (temp.next != null) {
+                    temp = temp.next;
+                }
+                temp.next = newNode;
+                System.out.println("Node added. Position of new node is " + newNode.position + ". Data of new node is " + newNode.data + ".");
             }
-            temp.next = newNode;
-
         }
-    }
-
-    public void print() {
-        Node<T> temp = head;
-
-        while (temp != null) {
-            System.out.print(temp.data + " --> ");
-            temp = temp.next;
-
-        }
-        System.out.println(" Null");
-
     }
 
     // Insert a child node with the given value after the specified parent node
-    public void insertChild(int parentIndex, int childValue) {
+    public void insertChildNode(int parentIndex, int childValue) {
         // If the list is empty, create a new head node
-        if (head == null) {
-            head = new Node(parentIndex);
-        }
+        Node<T> temp = findIndex(parentIndex);
 
-        Node parent = findIndex(parentIndex);
-        if (parent == null) {
-            System.out.println("Parent node not found");
-            return;
-        }
-
-        Node newNode = new Node(childValue);
-        Node nextNode = parent.child;
-        parent.child = newNode;
-        newNode.child = nextNode;
-    }
-
-    /* Helper method to find the node with the given value
-    private Node findNode(int value) {
-        Node current = head;
-        while (current != null) {
-            if (current.data.equals(value)) {
-                return current;
+        if (size(temp) >= 7) {
+            System.out.println("Game Over!");
+        } else {
+            if (head == null) {
+                head = new Node(parentIndex);
             }
-            current = current.next;
+
+            Node<T> parent = findIndex(parentIndex);
+
+            if (parent == null) {
+                System.out.println("Parent node not found");
+                return;
+            }
+
+            Node<T> newNode = new Node(childValue);
+            Adder add = new Adder();
+            Node<T> prev = newNode;
+            while (parent.child != null) {
+                parent = parent.child;
+            }
+            if (parent.data.equals(newNode.data)) {
+                String data = add.add(newNode.getData(), parent.getData()).toString();
+                parent.setData((T) data);
+                System.out.println("Since the data of the new child node and the previous node are equal,\nthe addition process was performed and the data of the previous node was updated.\nPosition of updated node is " + parentIndex + ". Data of updated node is " + parent.getData() + ".");
+                
+                
+            } else {
+                
+                parent.child = newNode;
+                System.out.println("Child node added. Position of child node is " + parentIndex + ". Data of new node is " + newNode.data + ".");
+                
+            }
+
         }
-        return null;
+
     }
-     */
+
     private Node findIndex(int index) {
         Node current = head;
 
@@ -91,48 +97,17 @@ public class MLinkedList<T> {
         return null;
     }
 
-    /*
-    public void pprintList() {
-        if (head == null) {
-            System.out.println("Multi LinkedList is empty");
-            return;
-        }
-
-        Node row = head;
-        int x = 0;
-        while (row != null) {
-
-            Node col = row;
-            if (x != 0) {
-                System.out.println("|");
-            }
-            // System.out.println("v");
-            while (col != null) {
-                System.out.print(col.data + " --> ");
-                col = col.child;
-            }
-
-            System.out.println("Null");
-            row = row.next;
-            x++;
-
-        }
-        System.out.println("|");
-        System.out.println("Null");
-    }
-     */
     public void printList() {
         if (head == null) {
             System.out.println("Multi LinkedList is empty");
             return;
         }
 
-        //Node row = head;
         int x = 0;
         for (int i = 1; i < 6; i++) {
             Node row = head;
 
-            for (int y = 1; y < 7; y++) {
+            for (int y = 1; y < 8; y++) {
                 if (row != null) {
 
                     if (i == row.position) {
@@ -158,73 +133,24 @@ public class MLinkedList<T> {
         System.out.println("Null");
     }
 
-    public void removeChild(int x, int y) {
-        if (head == null) {
-            System.out.println("List is empty.");
-            return;
+    public int size(Node<T> node) {
+
+        int counter = 0;
+        while (node != null) {
+            counter++;
+            node = node.child;
         }
-
-        Node temp = head;
-        Node prev = null;
-
-        // Traverse down the list to find the row
-        while (temp != null && !temp.data.equals(x)) {
-            prev = temp;
-            temp = temp.child;
-        }
-
-        if (temp == null) {
-            System.out.println("Row not found.");
-            return;
-        }
-
-        Node rowHead = temp;
-        Node rowTemp = temp.next;
-        Node rowPrev = temp;
-
-        // Traverse across the row to find the column
-        while (rowTemp != null && !rowTemp.data.equals(y) ) {
-            rowPrev = rowTemp;
-            rowTemp = rowTemp.next;
-        }
-
-        if (rowTemp == null) {
-            System.out.println("Column not found.");
-            return;
-        }
-
-        // Remove the node
-        if (rowTemp == rowHead) {
-            rowHead = rowHead.next;
-            temp.child = rowHead;
-        } else {
-            rowPrev.next = rowTemp.next;
-        }
-
-        // Update the row and column pointers
-        if (rowHead == null) {
-            prev.child = temp.child;
-        }
-
-        System.out.println("Node removed: (" + x + ", " + y + ")");
-    }
-    
-    public void yaz(int row, int col){
-        Node<T> temp = head;
-        
-        for(int i = 1; i<= row; i++){
-            temp = temp.next;
-           
-        }
-         Node<T> down = temp;
-            for(int y = 1; y<=col;y++){
-                down = down.child;
-                
-            }
-            System.out.println("Data = " + down.data);
-        
-        
+        return counter;
     }
 
+    public int size2(Node<T> node) {
+
+        int counter = 0;
+        while (node != null) {
+            counter++;
+            node = node.next;
+        }
+        return counter;
+    }
 
 }
