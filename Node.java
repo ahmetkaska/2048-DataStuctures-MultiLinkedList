@@ -1,19 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
- *
+ * 
  * @author ahmetkaska
  */
-public class Node<T> {
+public class Node<T> { // Generic Node
+    // Attributes
 
     Node<T> next;
     Node<T> child;
     T data;
     int position;
 
+    // Constructors 
     public Node(T data) {
         this.next = null;
         this.child = null;
@@ -21,6 +19,7 @@ public class Node<T> {
 
     }
 
+    // When node is creating, it take position value
     public Node(T data, int position) {
         this.next = null;
         this.child = null;
@@ -28,12 +27,29 @@ public class Node<T> {
         this.position = position;
     }
 
-    public  void setData(T data) {
+    // Getters and Setters
+    public void setNext(Node<T> next) {
+        this.next = next;
+    }
+
+    public Node<T> getNext() {
+        return next;
+    }
+
+    public void setChild(Node<T> child) {
+        this.child = child;
+    }
+
+    public Node<T> getChild() {
+        return child;
+    }
+
+    public void setData(T data) {
         this.data = data;
     }
 
     public T getData() {
         return data;
     }
-    
+
 }

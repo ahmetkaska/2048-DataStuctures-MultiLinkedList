@@ -1,26 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
  *
  * @author ahmetkaska
  */
-public class MLinkedList<T> {
+public class MLinkedList<T> { // Generic Multi Linked-List
 
+    // Attributes
     Node<T> head;
 
+    //Empty Constructures
     public MLinkedList() {
-        if (head == null) {
-            //System.out.println("List is empty!!");
-        }
+
     }
 
+    // AddParentNode(data, position) take two arguments data and position of node(index) 
     public void AddParentNode(T data, int position) {
-        Node<T> newNode = new Node(data, position);
+        Node<T> newNode = new Node(data, position);   // arguments and node arguments take similar data
         Node<T> parent = head;
-        if (size2(parent) >= 5) {
+        if (sizeOfColumns(parent) >= 5) {
             System.out.println("Game Over!");
         } else {
             if (head == null) {
@@ -30,57 +27,69 @@ public class MLinkedList<T> {
             } else {
                 Node<T> temp = head;
 
-                while (temp.next != null) {
+                while (temp.next != null) { // if temp is not null, temp assign after node with while cycle
                     temp = temp.next;
                 }
-                temp.next = newNode;
+                temp.next = newNode;       // if temp is null, newNode add end of list
                 System.out.println("Node added. Position of new node is " + newNode.position + ". Data of new node is " + newNode.data + ".");
             }
         }
     }
 
-    // Insert a child node with the given value after the specified parent node
+    // Insert a child node with the given parent index after the specified parent node
+    //so it hovers over the children of my parent node and goes all the way. Adds the new node to the end of the list.
     public void insertChildNode(int parentIndex, int childValue) {
-        // If the list is empty, create a new head node
+
         Node<T> temp = findIndex(parentIndex);
 
-        if (size(temp) >= 7) {
+        if (sizeOfRows(temp) >= 7) {
             System.out.println("Game Over!");
         } else {
+            // If the list is empty, create a new head node
             if (head == null) {
                 head = new Node(parentIndex);
             }
 
-            Node<T> parent = findIndex(parentIndex);
-
+            Node<T> parent = findIndex(parentIndex); // With the findIndex() method, the Parent index finds the entered node and assigns the temp node.
             if (parent == null) {
                 System.out.println("Parent node not found");
                 return;
             }
-
             Node<T> newNode = new Node(childValue);
-            Adder add = new Adder();
-            Node<T> prev = newNode;
+
             while (parent.child != null) {
                 parent = parent.child;
             }
-            if (parent.data.equals(newNode.data)) {
-                String data = add.add(newNode.getData(), parent.getData()).toString();
-                parent.setData((T) data);
-                System.out.println("Since the data of the new child node and the previous node are equal,\nthe addition process was performed and the data of the previous node was updated.\nPosition of updated node is " + parentIndex + ". Data of updated node is " + parent.getData() + ".");
-                
-                
-            } else {
-                
-                parent.child = newNode;
-                System.out.println("Child node added. Position of child node is " + parentIndex + ". Data of new node is " + newNode.data + ".");
-                
-            }
+
+            parent.child = newNode;
+            System.out.println("Child node added. Position of new child node is " + parentIndex + ". Data of new child node is " + newNode.data + ".");
 
         }
 
     }
 
+// It takes the current node with the position value taken as a parameter.
+// The previous node is before the current node. 
+// If data of previous node and data of currents node are equals, sum datas and update data previous node assign sum value.
+    public void AddTwoNodesWithSameData(int position) {
+        Node current = findIndex(position);
+        Node previous = null;
+
+        while (current != null) {
+            if (previous != null && current != null && previous.data.equals(current.data)) {
+
+                previous.setData(Integer.sum((int) previous.data, (int) current.data));
+                System.out.println("Since the data of the child node and the previous node are equal,\nthe addition process was performed and the data of the previous node was updated.\nPosition of updated node is " + position + ". Data of updated node is " + previous.getData() + ".");
+
+                previous.setChild(current.child);
+                current = previous;
+            }
+            previous = current;
+            current = current.child;
+        }
+    }
+
+    // If the index value taken as a parameter is the same as the position of the current node, it returns the current node.
     private Node findIndex(int index) {
         Node current = head;
 
@@ -97,6 +106,7 @@ public class MLinkedList<T> {
         return null;
     }
 
+    // Print two dimensional linked-list
     public void printList() {
         if (head == null) {
             System.out.println("Multi LinkedList is empty");
@@ -133,7 +143,8 @@ public class MLinkedList<T> {
         System.out.println("Null");
     }
 
-    public int size(Node<T> node) {
+    // size of row
+    public int sizeOfRows(Node<T> node) {
 
         int counter = 0;
         while (node != null) {
@@ -143,7 +154,8 @@ public class MLinkedList<T> {
         return counter;
     }
 
-    public int size2(Node<T> node) {
+    // size of columns
+    public int sizeOfColumns(Node<T> node) {
 
         int counter = 0;
         while (node != null) {
